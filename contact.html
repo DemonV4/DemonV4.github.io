@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/form.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <title>Contato</title>
+</head>
+
+<body>
+    <div class="loading">
+        <lottie-player src="https://assets7.lottiefiles.com/temp/lf20_Tw0dyZ.json" background="transparent" speed="1"
+            style="width: 300px; height: 300px;" class="lottieLoading" loop autoplay></lottie-player>
+    </div>
+    <header class="header container" id="header" onclick="closeOpen()">
+        <div class="container">
+            <div>
+                <h1 class="titulo">Site</h1>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./about.html">Sobre</a></li>
+                    <li><a href="./contact.html">Contato</a></li>
+                    <li class="submenu"><a href="./login.html"><i class="fa fa-user" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="groupNotification" id="groupNotification">
+    </div>
+    <section class="section-form section-contact section">
+        <div class="container">
+            <div class="content">
+                <form action="" method="post">
+                    <div>
+                        <label for="txtNome">Nome</label>
+                        <input type="text" placeholder="Nome" id="txtName">
+                    </div>
+                    <div>
+                        <label for="txtEmail">Email</label>
+                        <input type="email" placeholder="exemplo@email.com" id="txtEmail">
+                    </div>
+                    <div class="text-link">
+                        <label for="txtAssunto">Assunto</label>
+                        <input type="text" name="" placeholder="Assunto" id="txtAssunto">
+                    </div>
+                    <div>
+                        <label for="txtMensagem">Mesangem</label>
+                        <textarea name="" cols="30" rows="10" id="txtMensagem"></textarea>
+                    </div>
+                    <button type="button" class="btn" onclick="contemErros()">Enviar</button>
+                </form>
+                <div class="link-register">
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="pages">
+            <h2>Páginas</h2>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">Sobre</a></li>
+                <li><a href="./contact.html">Contato</a></li>
+                <li><a href="./login.html">Login</a></li>
+                <li><a href="./register.html">Registrar-se</a></li>
+                </li>
+            </ul>
+        </div>
+        <div class="links">
+            <h2>Redes Socias</h2>
+            <a href="https://github.com/JonJonsx"><i class="fab fa-github"></i> JonJonsx</a>
+            <a href="https://www.linkedin.com/in/jonatan-da-silva-souza-91b69a189/"><i
+                    class="fab fa-linkedin"></i> Jonatan Da Silva Souza</a>
+            <a href="https://www.facebook.com/jonatan.souza.3781/"><i class="fab fa-facebook"></i> Jonatan Souza</a>
+            <a href="https://www.instagram.com/jhow.dsouza/?hl=pt-br"><i class="fab fa-instagram"></i> @jhow.dsouza</a>
+        </div>
+    </footer>
+</body>
+
+</html>
+<script>
+    const contemErros = () =>{
+        groupNotification.innerHTML = '';
+        const erros = [];
+        const usuario = {
+            nome: txtName.value,
+            email: txtEmail.value,
+            assunto: txtAssunto.value,
+            mensagem: txtMensagem.value
+        }
+
+        const notification = (alerta) => {
+            groupNotification.innerHTML += `<div class="notification"><label>${alerta}</label></div>`
+        }
+        if (usuario.nome.trim().length <= 5) {
+            notification('Digite um nome valido por favor');
+            erros.push('Digite um nome valido por favor');
+        }
+        if (usuario.assunto.trim().length < 5) {
+            notification('Digite um assunto com mais de 5 letras');
+            erros.push('1');
+        }
+        if(usuario.email.indexOf('@') < 0  || usuario.email.indexOf('.com') < 0){
+            notification('Digite um email valido : example@example.com');
+            erros.push("1");
+        }
+        if(usuario.mensagem.trim().length <= 10) {
+            notification('Digite um mensagem com mais de 10 letras');
+            erros.push('1');
+        }
+        setTimeout(()=>{
+            groupNotification.innerHTML = '';
+        },5000)
+    }
+</script>
+<script src="https://kit.fontawesome.com/4d7d6b2306.js"></script>
+<script src="../js/loader.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
